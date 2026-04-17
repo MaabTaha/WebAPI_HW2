@@ -3,7 +3,7 @@ CSC3916 HW2
 File: Server.js
 Description: Web API scaffolding for Movie API
  */
-
+require('dotenv').config();
 var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -93,7 +93,54 @@ router.route('/testcollection')
         res.json(o);
     }
     );
-    
+
+router.route('/movies')
+
+    // GET
+    .get((req, res) => {
+        var o = getJSONObjectForMovieRequirement(req);
+        o.status = 200;
+        o.message = "GET movies";
+        o.query = req.query;
+
+        res.json(o);
+    })
+
+    // POST
+    .post((req, res) => {
+        var o = getJSONObjectForMovieRequirement(req);
+        o.status = 200;
+        o.message = "movie saved";
+        o.query = req.query;
+
+        res.json(o);
+    })
+
+    // PUT (JWT REQUIRED)
+    .put(authJwtController.isAuthenticated, (req, res) => {
+        var o = getJSONObjectForMovieRequirement(req);
+        o.status = 200;
+        o.message = "movie updated";
+        o.query = req.query;
+
+        res.json(o);
+    })
+
+    // DELETE (BASIC AUTH REQUIRED)
+    .delete(authController.isAuthenticated, (req, res) => {
+        var o = getJSONObjectForMovieRequirement(req);
+        o.status = 200;
+        o.message = "movie deleted";
+        o.query = req.query;
+
+        res.json(o);
+    })
+
+    // all other methods (PATCH, etc.)
+    .all((req, res) => {
+        res.status(405).send({ message: 'HTTP method not supported.' });
+    });
+
 app.use('/', router);
 app.listen(process.env.PORT || 8080);
 module.exports = app; // for testing only
