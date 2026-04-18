@@ -14,7 +14,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n \"username\": \"testuser\",\r\n \"password\": \"123\"\r\n}",
+          "raw": "{\r\n \"username\": \"cu_user\",\r\n \"password\": \"cu_rulez\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -56,7 +56,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n \"username\": \"testuser\",\r\n \"password\": \"123\"\r\n}",
+          "raw": "{\r\n \"username\": \"cu_user\",\r\n \"password\": \"cu_rulez\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -81,14 +81,7 @@
       "name": "GetMovie",
       "request": {
         "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "{{token}}",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         },
         "method": "GET",
         "header": [],
@@ -114,15 +107,12 @@
     },
     {
       "name": "AddMovieInterstellar",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n \"title\": \"Interstellar\"\r\n}",
+          "raw": "{\r\n  \"title\": \"Batman\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -146,16 +136,31 @@
     {
       "name": "UpdateMovie",
       "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "{{token}}",
-              "type": "string"
-            }
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzY2I2NDg0NGU4MTEyZjJlM2I4YTA2YTBiMTU0MDMwMTg0YjIxMWYiLCJ1c2VybmFtZSI6ImN1X3VzZXIiLCJpYXQiOjE3NzY0ODc4MDV9.y7taZuFysxlXdB2vR2NoXco8jlYYoWDFV3AhO2VinKY",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/movies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "movies"
           ]
-        },
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "InvalidUpdated",
+      "request": {
         "method": "PUT",
         "header": [],
         "url": {
@@ -180,17 +185,82 @@
           "basic": [
             {
               "key": "password",
-              "value": "123",
+              "value": "cu_rulez",
               "type": "string"
             },
             {
               "key": "username",
-              "value": "testuser",
+              "value": "cu_user",
               "type": "string"
             }
           ]
         },
-        "method": "GET",
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/movies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "InvalidDeleteMovie",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "ks",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "cu_user",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/movies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UnsupportedMethod",
+      "request": {
+        "method": "PATCH",
         "header": [],
         "url": {
           "raw": "http://localhost:8080/movies",

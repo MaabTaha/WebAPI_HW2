@@ -102,7 +102,7 @@ router.route('/movies')
         o.status = 200;
         o.message = "GET movies";
         o.query = req.query;
-
+        o.env = process.env.UNIQUE_KEY;
         res.json(o);
     })
 
@@ -112,7 +112,7 @@ router.route('/movies')
         o.status = 200;
         o.message = "movie saved";
         o.query = req.query;
-
+        o.env = process.env.UNIQUE_KEY;
         res.json(o);
     })
 
@@ -122,7 +122,7 @@ router.route('/movies')
         o.status = 200;
         o.message = "movie updated";
         o.query = req.query;
-
+        o.env = process.env.UNIQUE_KEY;
         res.json(o);
     })
 
@@ -132,7 +132,7 @@ router.route('/movies')
         o.status = 200;
         o.message = "movie deleted";
         o.query = req.query;
-
+        o.env = process.env.UNIQUE_KEY;
         res.json(o);
     })
 
