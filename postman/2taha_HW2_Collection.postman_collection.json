@@ -140,7 +140,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzY2I2NDg0NGU4MTEyZjJlM2I4YTA2YTBiMTU0MDMwMTg0YjIxMWYiLCJ1c2VybmFtZSI6ImN1X3VzZXIiLCJpYXQiOjE3NzY0ODc4MDV9.y7taZuFysxlXdB2vR2NoXco8jlYYoWDFV3AhO2VinKY",
+            "value": "{{token}}",
             "type": "text"
           }
         ],
@@ -162,7 +162,13 @@
       "name": "InvalidUpdated",
       "request": {
         "method": "PUT",
-        "header": [],
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
         "url": {
           "raw": "http://localhost:8080/movies",
           "protocol": "http",
@@ -185,7 +191,7 @@
           "basic": [
             {
               "key": "password",
-              "value": "cu_rulez",
+              "value": "{{vault:authorization-password}}",
               "type": "string"
             },
             {
@@ -225,7 +231,7 @@
           "basic": [
             {
               "key": "password",
-              "value": "ks",
+              "value": "{{vault:authorization-password}}",
               "type": "string"
             },
             {
